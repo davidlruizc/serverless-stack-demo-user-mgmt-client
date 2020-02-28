@@ -5,13 +5,13 @@ export default {
     BUCKET: "notes-app-uploads"
   },
   apiGateway: {
-    REGION: "us-east-1",
-    URL: "https://5by75p4gn3.execute-api.us-east-1.amazonaws.com/prod"
-  },
-  cognito: {
-    REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_udmFFSb92",
-    APP_CLIENT_ID: "4hmari2sqvskrup67crkqa4rmo",
-    IDENTITY_POOL_ID: "us-east-1:ceef8ccc-0a19-4616-9067-854dc69c2d82"
-  }
+		REGION: 'us-east-2',
+		URL: 'https://38q6xux1n0.execute-api.us-east-2.amazonaws.com/dev'
+	},
+	cognito: {
+		REGION: 'us-east-2',
+		USER_POOL_ID: 'us-east-2_1zPou98cG',
+		APP_CLIENT_ID: '342c0b3jtf5tsr22tr51f18tp4',
+		IDENTITY_POOL_ID: 'YOUR_IDENTITY_POOL_ID'
+	}
 };
