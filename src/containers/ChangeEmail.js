@@ -16,6 +16,7 @@ export default class ChangeEmail extends Component {
     this.state = {
       code: "",
       email: "",
+      name: "",
       codeSent: false,
       isConfirming: false,
       isSendingCode: false
@@ -23,7 +24,7 @@ export default class ChangeEmail extends Component {
   }
 
   validatEmailForm() {
-    return this.state.email.length > 0;
+    return this.state.name.length > 0;
   }
 
   validateConfirmForm() {
@@ -43,10 +44,15 @@ export default class ChangeEmail extends Component {
 
     try {
       const user = await Auth.currentAuthenticatedUser();
-      await Auth.updateUserAttributes(user, { email: this.state.email });
+      const { attributes } = user;
+      console.log(attributes)
+      await Auth.updateUserAttributes(user, { 
+        'custom:user_full_name': this.state.name 
+      });
 
       this.setState({ codeSent: true });
     } catch (e) {
+      console.log(e)
       alert(e.message);
       this.setState({ isSendingCode: false });
     }
@@ -58,6 +64,7 @@ export default class ChangeEmail extends Component {
     this.setState({ isConfirming: true });
 
     try {
+      console.log(this.state.code);
       await Auth.verifyCurrentUserAttributeSubmit("email", this.state.code);
 
       this.props.history.push("/settings");
@@ -70,12 +77,12 @@ export default class ChangeEmail extends Component {
   renderUpdateForm() {
     return (
       <form onSubmit={this.handleUpdateClick}>
-        <FormGroup bsSize="large" controlId="email">
-          <ControlLabel>Email</ControlLabel>
+        <FormGroup bsSize="large" controlId="name">
+          <ControlLabel>Name</ControlLabel>
           <FormControl
             autoFocus
-            type="email"
-            value={this.state.email}
+            type="name"
+            value={this.state.name}
             onChange={this.handleChange}
           />
         </FormGroup>
